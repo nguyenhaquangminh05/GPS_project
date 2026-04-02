@@ -18,7 +18,7 @@ class GpsRtkBridgeNode(Node):
 
         # Parameters uBlox
         self.declare_parameter('device', '/dev/ttyACM0')
-        self.declare_parameter('baud', 38400)
+        self.declare_parameter('baud', 9600)
 
         # Parameters RTCM
         self.declare_parameter('rtcm_server', '192.168.4.1')
@@ -188,7 +188,7 @@ class GpsRtkBridgeNode(Node):
                                     print("RTCM data not received or too old")
                                 
                                 # Save to CSV
-                                if fix == 4:
+                                if fix in [4,5]:
                                     self.save_to_csv(time.time(), lat, lon, alt)
                                 
                                 # Publish ROS message
